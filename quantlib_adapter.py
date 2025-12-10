@@ -58,11 +58,11 @@ class QLMarketContext(MarketContext):
         self.update_eval_date()
 
         for id, quote in self.quotes.items():
-            if self.get(id, False):
+            if self.get(id, None) is not None:
                 quote.setValue(self[id])
-
+    
         for id, handle in self.relinkable_handles.items():
-            if self.get(id, False):
+            if self.get(id, None) is not None:
                 handle.linkTo(self[id])
 
     def __sklearn_clone__(self):
